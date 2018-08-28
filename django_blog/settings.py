@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'bootstrap_admin',
+    'article.apps.ArticleConfig', # 文章 app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+ 'django.contrib.auth.context_processors.auth',
+ 'django.core.context_processors.auth'
+ 'django.core.context_processors.debug',
+ 'django.core.context_processors.media',
+ 'django.core.context_processors.static',
+ 'django.core.context_processors.tz',
+ 'django.contrib.messages.context_processors.messages',
+ 'learn_models.context_processors.test',
+)
+
+# from django.conf import global_settings
+# # TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+# #     'django.core.context_processors.request',
+# # )
+# BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +73,7 @@ ROOT_URLCONF = 'django_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,8 +94,12 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', # 指定数据库驱动
+        'NAME': 'django_blog',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
