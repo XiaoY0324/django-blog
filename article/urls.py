@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
 		path('', views.home, name='home'),
-    re_path(r'^detail/(?P<my_args>\d+)/$', views.detail, name='detail'),
+    path('<int:id>/', views.detail, name='detail'),
+    path('archives/', views.archives, name = 'archives'),
+    path('about_me/', views.about_me, name = 'about_me')
 ]
